@@ -1,5 +1,7 @@
 package net.shenru.binding;
 
+import android.view.View;
+
 /**
  * 提供用于操作绑定的静态方法
  * @author xtdhwl
@@ -15,7 +17,7 @@ public class BindingOperations {
 	 * @param dp
 	 * @param binding
 	 */
-	public static void setBinding(DependencyObject target, String dp, BindingBase binding) {
+	public static void setBinding(View target, String dp, BindingBase binding) {
 		//TODO
 	}
 }

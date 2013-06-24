@@ -11,6 +11,17 @@ public class PropertyPath {
 	/** 获取参数列表中使用路径时引用索引参数。 */
 	private String[] pathParametes;
 
+	public PropertyPath(String path) {
+		super();
+		this.path = path;
+	}
+
+	public PropertyPath(String path, String[] pathParametes) {
+		super();
+		this.path = path;
+		this.pathParametes = pathParametes;
+	}
+
 	public String getPath() {
 		return path;
 	}
