@@ -1,0 +1,66 @@
+ //这里是winphone中数据绑定demo
+ //实现选择ListBox更改TextBox背景颜色
+ <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Height="210"  Grid.Row="0" Background="BurlyWood" >
+                <StackPanel>
+                <TextBox  Background="{Binding ElementName=listBox,Path=SelectedItem.Content,Mode=OneWay}" Height="82" FontSize="30" Name="textBox" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="Red" Text="OneWay绑定模式"></TextBox>
+                <ListBox FontSize="30" Name="listBox" Margin="0,0,-218,-70">
+                    <ListBoxItem Content="Green"></ListBoxItem>
+                    <ListBoxItem Content="Blue"></ListBoxItem>
+                    <ListBoxItem Content="Orange"></ListBoxItem>
+                </ListBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Name="gird2">
+               
+            </Grid>
+</Grid>
+//代码实现
+ private void initView()
+        {
+         
+            Grid grid = (Grid)this.FindName("gird2");
+            RowDefinition rd1 = new RowDefinition();
+            RowDefinition rd2 = new RowDefinition();
+            grid.RowDefinitions.Add(rd1);
+            grid.RowDefinitions.Add(rd2);
+            grid.Height = 200;
+
+            TextBox tb1 = new TextBox();
+            tb1.Text = "代码设置数据绑定";
+           
+            ListBox lb = new ListBox();
+             lb.Name = "listbox2";
+            lb.FontSize = 30;
+            lb.Margin = new Thickness(0, 0, -218, -70);
+
+            ListBoxItem lbi1 = new ListBoxItem();
+            lbi1.Content = "Green";
+
+            ListBoxItem lbi2 = new ListBoxItem();
+            lbi2.Content = "Blue";
+
+            ListBoxItem lbi3 = new ListBoxItem();
+            lbi3.Content = "Orange";
+
+            lb.Items.Add(lbi1);
+            lb.Items.Add(lbi2);
+            lb.Items.Add(lbi3);
+			//进行数据绑定
+            Binding binding = new Binding();
+            binding.ElementName = "listbox2";
+            binding.Mode = BindingMode.OneWay;
+            binding.Path = new PropertyPath("SelectedItem.Content"); //"SelectedItem.Content";
+           // tb1.SetBinding(tb1, binding);
+            BindingOperations.SetBinding(tb1, TextBox.BackgroundProperty, binding);
+
+            Grid.SetRow(tb1, 0);
+            Grid.SetRow(lb, 1);
+
+            grid.Children.Add(tb1);
+            grid.Children.Add(lb);
+        }
