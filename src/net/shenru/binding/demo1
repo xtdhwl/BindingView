@@ -64,3 +64,4 @@
             grid.Children.Add(tb1);
             grid.Children.Add(lb);
         }
+ }
